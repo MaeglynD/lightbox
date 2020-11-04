@@ -1,5 +1,10 @@
 $thumbnail-height: 150px;
 
+.css-1icgnzl-SkeletonTheme{
+	height: 100%;
+	width: 100%;
+}
+
 .image-gallery{
 	height: 100%;
 
@@ -20,7 +25,6 @@ $thumbnail-height: 150px;
 			display: flex;
 			flex-direction: column;
 			padding: 20px;
-			background: rgba(36, 36, 36, 0.1);
 
 			.image-gallery-thumbnail{
 				border: 0px;
@@ -29,6 +33,14 @@ $thumbnail-height: 150px;
 				filter: brightness(90%);
 				transition: 0.2s;
 				cursor: pointer;
+				position: relative;
+
+				span{
+					position: absolute;
+					width: 100%;
+					height: 100%;
+					left: 0;
+				}
 				
 				&.active, &:hover, &:focus{
 					opacity: 1;
@@ -43,8 +55,39 @@ $thumbnail-height: 150px;
 					height: 108%;
 					width: unset;
 					border-radius: 5px;
+					
 				}
 			}
 		}	
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	$thumbnail-height: 110px;
+
+	.image-gallery{
+		.image-gallery-thumbnails-wrapper{
+			height: $thumbnail-height
+		}
+
+		.image-gallery-content{
+
+			.image-gallery-slide-wrapper{
+				height: calc(100% - #{$thumbnail-height});
+			}
+
+			.image-gallery-thumbnails-wrapper{
+				height: $thumbnail-height;
+				padding: 0px;
+
+				.image-gallery-thumbnails-container{
+
+					.image-gallery-thumbnail-image{
+						height: 80px;
+						
+					}
+				}
+			}
+		}
 	}
 }

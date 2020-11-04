@@ -22,6 +22,13 @@ $border-radius: 3px;
 	text-overflow: ellipsis;
 }
 
+@mixin shadow() {
+	box-shadow: 
+		0 8px 10px -5px rgba(0,0,0,.2), 
+		0 16px 24px 2px rgba(0,0,0,.14),
+		0 6px 30px 5px rgba(0,0,0,.12);
+}
+
 *{
   box-sizing: border-box;
 }
@@ -47,6 +54,20 @@ html, body, #root, .l-app{
 	display: flex;
 	background: $grey-a;
 
+	// Stylings for skeleton loaders
+	&.l-loading{
+
+		.l-panel{
+			line-height: 41px;
+		}
+	}
+
+	&.l-t-loading{
+		.image-gallery-thumbnail-image{
+			visibility: hidden;
+		}
+	}
+
 	.l-portion-a, .l-portion-b{
 		width: 100%;
 		height: 100%;
@@ -54,6 +75,34 @@ html, body, #root, .l-app{
 	}
 
 	.l-portion-a{
+
+		.l-info-button{
+			height: 50px;
+			width: 50px;
+			background: $grey-b;
+			border-radius: 50%;
+			position: fixed;
+			top: 25px;
+			right: 25px;
+			display: flex;
+			justify-content: center;
+			z-index: 2;
+			align-items: center;
+			transition: 0.2s;
+			will-change: background;
+			cursor: pointer;
+			display: none;
+			@include shadow();
+
+			&:hover{
+				background: rgba(56, 56, 56, 0.9);
+			}
+			
+			svg{
+				width: 21px;
+    		height: 19px;
+			}
+		}
 
 		.l-display-image{
 			width: 100%;
@@ -84,6 +133,10 @@ html, body, #root, .l-app{
 			.l-display-overflow{
 				position: relative;
 				overflow: hidden;
+				
+				.react-loading-skeleton{
+					position: absolute;
+				}
 			}
 		}
 	}
@@ -93,8 +146,50 @@ html, body, #root, .l-app{
 		max-width: 370px;
 		border-left: $border;
 
+		.l-overlay{
+			background: rgba(0,0,0,0.7);
+			position: fixed;
+			height: 100vh;
+			right: 0;
+			width: calc(100vw - 300px);
+			backdrop-filter: blur(10px);
+			display: none;
+			transition: 0.2s;
+		}
+
+		.l-download-container{
+			margin: 25px;
+			margin-bottom: 30px;
+
+			.l-download-button{
+				display: block;
+				width: 100%;
+				border-radius: 30px;
+				height: 46px;
+				line-height: 46px;
+				text-align: center;
+				border: $border;
+				text-transform: uppercase;
+				cursor: pointer;
+				transition: 0.2s;
+				will-change: background;
+				text-decoration: none;
+
+				&:visited, &:link, &:active{
+					color: $grey-text-a;
+				}
+
+				&:hover{
+					background: rgba(255, 255, 255, 0.05);
+				}
+			}
+		}
+
 		.l-tab-container{
-			
+			height: 100%;
+			display: flex;
+			flex-direction: column;
+
 			ul{
 				height: 40px;
 				list-style: none;
@@ -128,11 +223,16 @@ html, body, #root, .l-app{
 		}
 
 		.l-panel{
-			padding: 25px;
+			
+			&.react-tabs__tab-panel--selected{
+				padding: 25px;
+				height: 100%;
+				overflow-y: scroll;
+			}
 
 			.l-panel-sub{
 				margin-bottom: 12px;
-				padding-top: 20px;
+				padding-top: 25px;
 				color: $grey-text-b;
 			}
 
@@ -167,8 +267,8 @@ html, body, #root, .l-app{
 				line-height: 35px;
 				border-bottom: $border;
 				display: flex;
+				@include text-overflow();
 
-				
 				& div:nth-child(1){
 					color: $grey-text-b;
 				}
@@ -179,6 +279,86 @@ html, body, #root, .l-app{
 					width: 100%;
 					text-align: right;
 				}
+			}
+		}
+	}
+}
+
+* {
+
+	&::-webkit-scrollbar {
+    background-color: transparent;
+		width: 10px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(0, 0, 0, 0.3);
+		border-radius: 16px;
+	}
+
+	&::-webkit-scrollbar-thumb {
+		background-color: rgba(0,0,0,0.3);
+	}
+
+	&::-webkit-scrollbar-corner {
+		background-color: rgba(0,0,0,0.3);
+	}
+
+	&::-webkit-scrollbar-button {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 1024px) {
+	.l-app{
+
+		&.l-active{
+
+			.l-portion-b{
+				display: block;
+
+				.l-overlay{
+					display: block;
+				}
+			}
+
+			.l-portion-a{
+
+				.l-info-button{
+					display: none;
+				}
+			}
+		}
+
+		.l-portion-a{
+
+			.l-info-button{
+				display: flex;
+			}
+
+			.l-display-container{
+				padding: 15px;
+			}
+		}
+
+		.l-portion-b{
+			display: none;
+			position: absolute;
+			background: $grey-a;
+			max-width: 300px;
+			min-width: 300px;
+			@include shadow();
+
+			.l-overlay{
+				display: none;
+			}
+
+			.l-panel.react-tabs__tab-panel--selected{
+				padding: 15px;
+			}
+
+			.l-download-container{
+				margin: 15px;
 			}
 		}
 	}

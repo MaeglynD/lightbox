@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+@import 'pure-react-carousel/dist/react-carousel.es.css';
+
+// Background Colors
+$grey-a: #141414;
+$grey-b: #242424;
+$accent: #61afef;
+
+// Text Colors
+$grey-text-a: #e6e6e6;
+$grey-text-b: #999999;
+
+$border: 1px solid $grey-b;
+
+*{
+  box-sizing: border-box;
+}
+
+html{
+  font-family: 'Inter', Sans-Serif !important;
+  font-size: 12px;
+  color: $grey-text-a;
+}
+
+body{
+	padding: 0;
+  margin: 0;
+}
+
+html, body, #root, .l-app{
+	width: 100%;
+	height: 100%;
+}
+
+.l-app{
+	display: flex;
+	background: $grey-a;
+
+	.l-portion-a, .l-portion-b{
+		width: 100%;
+		height: 100%;
+	}
+
+	.l-portion-a{
+		display: flex;
+		flex-direction: column;
+		max-height: 100%;
+		flex-wrap: no-wrap;
+
+		.l-slides{
+			min-height: 120px;
+			background: rgba(36, 36, 36, 0.07);
+		}
+
+		.carousel{
+			height: calc(100% - 120px);
+		}
+		
+		.carousel__slider{
+			height: 100%
+		}
+	}
+
+	.l-portion-b{
+		max-width: 370px;
+		border-left: $border
+	}
+}

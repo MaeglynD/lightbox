@@ -1,3 +1,5 @@
+$thumbnail-height: 150px;
+
 .image-gallery{
 	height: 100%;
 
@@ -6,7 +8,7 @@
 	}
 
 	.image-gallery-slide-wrapper{
-		height: calc(100% - 120px);
+		height: calc(100% - #{$thumbnail-height}	);
 	}
 
 	.image-gallery-content{
@@ -14,7 +16,7 @@
 		flex-direction: column;
 
 		.image-gallery-thumbnails-wrapper{
-			height: 120px;
+			height: $thumbnail-height;
 			display: flex;
 			flex-direction: column;
 			padding: 20px;
@@ -23,6 +25,7 @@
 			.image-gallery-thumbnail{
 				border: 0px;
 				opacity: 0.3;
+				margin-right: 30px;
 				filter: brightness(90%);
 				transition: 0.2s;
 				cursor: pointer;
@@ -37,8 +40,9 @@
 				display: flex;
 
 				.image-gallery-thumbnail-image{
-					height: 110%;
+					height: 108%;
 					width: unset;
+					border-radius: 5px;
 				}
 			}
 		}	

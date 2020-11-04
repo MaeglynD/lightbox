@@ -11,7 +11,16 @@ $accent: #61afef;
 $grey-text-a: #e6e6e6;
 $grey-text-b: #999999;
 
+// Borders
 $border: 1px solid $grey-b;
+$border-radius: 3px;
+
+// The '...' when text overflows
+@mixin text-overflow {
+  white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
 
 *{
   box-sizing: border-box;
@@ -82,6 +91,95 @@ html, body, #root, .l-app{
 	.l-portion-b{
 		min-width: 370px;
 		max-width: 370px;
-		border-left: $border
+		border-left: $border;
+
+		.l-tab-container{
+			
+			ul{
+				height: 40px;
+				list-style: none;
+				display: flex;
+				text-align: center;
+				margin: 0;
+				padding: 0;
+				line-height: 40px;
+				cursor: pointer;
+
+				li{
+					width: 100%;
+					border: 1px solid transparent;
+
+					&:focus{
+						outline: 0;
+					}
+
+					&:not(.react-tabs__tab--selected){
+						background: #171717;
+						border: $border;
+						border-bottom-left-radius: $border-radius;
+						
+						&:first-child{
+							border-bottom-right-radius: $border-radius;
+							border-bottom-left-radius: 0px;
+						}
+					}
+				}
+			}
+		}
+
+		.l-panel{
+			padding: 25px;
+
+			.l-panel-sub{
+				margin-bottom: 12px;
+				padding-top: 20px;
+				color: $grey-text-b;
+			}
+
+			.l-panel-input{
+				height: 50px;
+				padding: 0 17.5px;
+				line-height: 50px;
+				background: $grey-b;
+				border-radius: $border-radius;
+				@include text-overflow();
+			}
+
+			.l-tags{
+				min-height: 80px;
+				padding: 10px;
+				display: flex;
+				flex-wrap: wrap;
+
+				.l-panel-tag{
+					height: 27px;
+					line-height: 27px;
+					padding: 0 10px;
+					background: #454545;
+					margin-right: 10px;
+					border-radius: $border-radius;
+					text-transform: lowercase;
+				}
+			}
+
+			.l-panel-meta{
+				height: 35px;
+				line-height: 35px;
+				border-bottom: $border;
+				display: flex;
+
+				
+				& div:nth-child(1){
+					color: $grey-text-b;
+				}
+
+				& div:nth-child(2){
+					color: $grey-text-a;
+					text-transform: uppercase;
+					width: 100%;
+					text-align: right;
+				}
+			}
+		}
 	}
 }

@@ -1,4 +1,8 @@
 import { Component } from 'react';
+import {
+	Tab, Tabs, TabList, TabPanel,
+} from 'react-tabs';
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton';
 import ImageGallery from 'react-image-gallery';
 import axios from 'axios';
 import './App.scss';
@@ -34,7 +38,7 @@ class App extends Component {
 				this.setState({ data });
 			})
 			.catch(({ err }) => {
-				console.log(err);
+				// err
 			});
 	}
 
@@ -86,7 +90,36 @@ class App extends Component {
 				</div>
 				{/* Info container */}
 				<div className="l-portion-b">
-					{/*  */}
+					{/* <SkeletonTheme color="#242424" highlightColor="rgba(255, 255, 255, 0.02)">
+						<p>
+							<Skeleton width={30} />
+						</p>
+					</SkeletonTheme> */}
+					<Tabs className="l-tab-container">
+						<TabList className="l-tab-list">
+							<Tab className="l-tab">Info</Tab>
+							<Tab className="l-tab">Google vision</Tab>
+						</TabList>
+
+						<TabPanel className="l-panel">
+							<div className="l-panel-sub">Name</div>
+							<div className="l-panel-input">Power station 2</div>
+							<div className="l-panel-sub">Tags</div>
+							<div className="l-panel-input l-tags">
+								<div className="l-panel-tag">shop</div>
+								<div className="l-panel-tag">night</div>
+								<div className="l-panel-tag">sky</div>
+							</div>
+							<div className="l-panel-sub">Metadata</div>
+							<div className="l-panel-meta">
+								<div>Type</div>
+								<div>Jpeg</div>
+							</div>
+						</TabPanel>
+						<TabPanel className="l-panel">
+							<h2>Any content 2</h2>
+						</TabPanel>
+					</Tabs>
 				</div>
 			</div>
 		);

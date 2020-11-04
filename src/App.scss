@@ -22,11 +22,17 @@ $border-radius: 3px;
 	text-overflow: ellipsis;
 }
 
+// Box shadow
 @mixin shadow() {
 	box-shadow: 
 		0 8px 10px -5px rgba(0,0,0,.2), 
 		0 16px 24px 2px rgba(0,0,0,.14),
 		0 6px 30px 5px rgba(0,0,0,.12);
+}
+
+a:visited, a:link, a:active{
+	color: $grey-text-a;
+	text-decoration: none;
 }
 
 *{
@@ -173,11 +179,6 @@ html, body, #root, .l-app{
 				cursor: pointer;
 				transition: 0.2s;
 				will-change: background;
-				text-decoration: none;
-
-				&:visited, &:link, &:active{
-					color: $grey-text-a;
-				}
 
 				&:hover{
 					background: rgba(255, 255, 255, 0.05);
@@ -228,6 +229,33 @@ html, body, #root, .l-app{
 				padding: 25px;
 				height: 100%;
 				overflow-y: scroll;
+			}
+
+			.l-extras-container{
+				display: flex;
+				margin-top: 25px;
+
+				.l-extras-btn{
+					width: 40px;
+					display: flex;
+					height: 40px;
+					justify-content: center;
+					align-items: center;
+					border: $border;
+					border-radius: $border-radius;
+					cursor: pointer;
+					transition: 0.2s;
+					will-change: background;
+
+					svg{
+						width: 20px;
+						height: 20px
+					}
+
+					&:hover{
+						background: rgba(255, 255, 255, 0.05);
+					}
+				}
 			}
 
 			.l-panel-sub{
